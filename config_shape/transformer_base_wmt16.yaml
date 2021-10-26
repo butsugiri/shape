@@ -1,0 +1,67 @@
+# wmt14_en_de.yaml
+save_data: # write here
+
+# Corpus opts:
+data:
+    train:
+        path_src: # write here
+        path_tgt: # write here
+    valid:
+        path_src: # write here
+        path_tgt: # write here
+
+# # Vocab opts
+# ### vocab:
+src_vocab: # write here
+tgt_vocab: # write here
+share_vocab: True
+
+# # Model training parameters
+
+# General opts
+keep_checkpoint: 10
+save_checkpoint_steps: 5000
+valid_steps: 5000
+train_steps: 200000
+seed: 1010
+
+# Batching
+queue_size: 10000
+bucket_size: 32768
+world_size: 8
+gpu_ranks: [0, 1, 2, 3, 4, 5, 6, 7]
+batch_type: "tokens"
+batch_size: 7000
+valid_batch_size: 8
+max_generator_batches: 2
+accum_count: [2]
+accum_steps: [0]
+
+# Optimization
+model_dtype: "fp16"
+optim: "adam"
+learning_rate: 2
+warmup_steps: 8000
+decay_method: "noam"
+adam_beta2: 0.998
+max_grad_norm: 0
+label_smoothing: 0.1
+param_init: 0
+param_init_glorot: true
+normalization: "tokens"
+share_decoder_embeddings: true
+share_embeddings: true
+
+# Model
+encoder_type: transformer
+decoder_type: transformer
+position_encoding: true
+enc_layers: 6
+dec_layers: 6
+heads: 8
+rnn_size: 512
+word_vec_size: 512
+transformer_ff: 2048
+dropout_steps: [0]
+dropout: [0.1]
+attention_dropout: [0.1]
